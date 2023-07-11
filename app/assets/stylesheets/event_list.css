@@ -26,6 +26,7 @@ h1 {
   color: white;
   font-size: 1.5rem;
   margin: 3%;
+  animation: mymove 1.5s;
 }
 
 .search-container {
