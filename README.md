@@ -34,5 +34,4 @@ Just copy paste the commands into your own shell
 
 - Open up the shell in your project location and run the following command
 
-    rails server          
-
+        rails server
