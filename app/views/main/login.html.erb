@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<%= stylesheet_link_tag 'nav', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= stylesheet_link_tag 'login', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <title>Login</title>
+</head>
+<body>
+  <div id="myNav" class="overlay">
+    <div class="nav-head">
+        <img src="../assets/event.png" alt="">
+        <a href="javascript:void(0)" class="closebtn" id="closeNav">&times;</a>
+    </div>
+    <div class="overlay-content">
+        <div class="overlay-link" id="login-overlay">
+            <a href="login.html"></a>
+            <p>Login</p><p>></p>
+        </div>
+        <div class="overlay-link" id="signup-overlay">
+            <a href="signup.html" ></a>
+            <p>Register</p><p>></p>
+        </div>
+        <div class="overlay-link" id="logout-overlay" >
+          <a href="#" class="logout"></a>
+          <p>Logout</p><p>></p>
+        </div>
+        <div class="overlay-link">
+            <a href="event_list.html"></a>
+            <p>Event List</p><p>></p>
+        </div>
+        
+    </div>
+</div>
+<nav>
+    <img src="../assets/event.png" alt="">
+    
+    <div class="links">
+        <img src="../assets/hamburger-ico.png" href="#" id="openNav">
+    </div>
+    <div class="desktop-links">
+        <a href="login.html" id="login">Login</a>
+        <a href="signup.html" id="signup">Sign-up</a>
+        <a href="#" id="logout" class="logout">Logout</a>
+        <a href="event_list.html">Event List</a>
+    </div>
+</nav>
+    <div class="main-container">
+  <div class="container">
+    <form class="registration-form" id="form">
+      <h2>Log-in</h2>
+      <p id="LoginError" class="error"></p>
+      <div class="form-group">
+        <input type="text" name="username" placeholder="Username" id="username" required>
+        <p id="user-error" class="error"></p>
+      </div>
+      <div class="form-group">
+        <input type="password" name="password" placeholder="Password" id="password" required>
+        <p id="password-error" class="error"></p>
+      </div>
+      <div class="form-group">
+        <button type="submit">Log-in</button>
+      </div>
+    </form>
+  </div></div>
+</body>
+<script src="../js/validation.js"></script>
+<script src="../js/side-nav.js"></script>
+<script src="../js/login.js"></script>
+</html>
