@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+}
+
+body {
+  font-family: "Helvetica", "Arial", sans-serif;
+  background-color: #f3f3f3;
+  background-image: url("../assets/party.jpg");
+  background-size: cover;
+}
+
+.main-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+}
+
+.container {
+  width: 90%;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 0 auto;
+  padding: 1%;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 25px;
+  transition: 0.5s linear;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: "Helvetica", "Arial", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+@media screen and (min-width: 768px) {
+  .container {
+    width: 40%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .container {
+    width: 30%;
+  }
+}
+.container h2 {
+  margin-top: 10%;
+  color: #4681f4;
+}
+
+.registration-form {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-right: 4%;
+}
+.registration-form h2 {
+  margin-left: 1%;
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 6%;
+  color: #333333;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  width: 80%;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+textarea, input[type=date], input[type=file] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  font-size: 16px;
+  resize: vertical;
+}
+
+textarea {
+  height: 150px;
+}
+
+input[type=text],
+input[type=email],
+input[type=password] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #cccccc;
+  border-radius: 7px;
+  transition: border-color 0.2s;
+}
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus {
+  border-color: #5cb85c;
+}
+
+button[type=submit] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #4681f4;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  border-radius: 25px;
+}
+button[type=submit]:hover {
+  transition: 1s;
+  background-color: #2a4781;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}/*# sourceMappingURL=login.css.map */

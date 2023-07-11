@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  font-family: "Helvetica", "Arial", sans-serif;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: #2a4781;
+  height: 100vh;
+  width: 100vw;
+}
+.main-container img {
+  height: 11%;
+  width: 25%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  transition: 0.5s linear;
+}
+@media screen and (min-width: 768px) {
+  .main-container img {
+    height: 20%;
+    width: 34%;
+  }
+}
+.main-container h1 {
+  font-size: 1rem;
+  margin-top: 5%;
+  margin-bottom: 2%;
+  transition: 0.5s linear;
+}
+@media screen and (min-width: 768px) {
+  .main-container h1 {
+    font-size: 2rem;
+    margin-bottom: 4%;
+    font-size: 2rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .main-container h1 {
+    font-size: 3rem;
+  }
+}
+.main-container h2 {
+  font-size: 0.5rem;
+  transition: 0.5s linear;
+}
+@media screen and (min-width: 768px) {
+  .main-container h2 {
+    font-size: 1rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .main-container h2 {
+    font-size: 1.5rem;
+  }
+}/*# sourceMappingURL=thank_you.css.map */
