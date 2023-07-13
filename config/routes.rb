@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   root to: "main#index"
   get "/login", to: "main#login"
   get "/signup", to: "main#signup"
+  post "/create/user", to: "user#create"
+  post "update/user/:id", to: "user#update"
 end
