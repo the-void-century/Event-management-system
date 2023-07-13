@@ -6,6 +6,7 @@ document.getElementById("main_form").addEventListener("submit",(e)=>{
     const email=document.getElementsByName("email")[0].value.trim();
     const password=document.getElementsByName("password")[0].value.trim();
     const repeatPassword=document.getElementsByName("repeat_password")[0].value.trim();
+    const profilePicture=document.getElementsByName("profilepicture")[0].files[0]
 
     const userPattern = /^[a-z][a-z0-9]{7,29}$/;
     const namePattern=/^[A-Za-z]+$/;
@@ -68,10 +69,29 @@ document.getElementById("main_form").addEventListener("submit",(e)=>{
         validForm=false
     }
     if(validForm){
-        document.cookie = `username=${username}`; 
-        document.cookie = `password=${password}`;
-        document.cookie = `token=${false}`;
-        window.location.replace("thank_you.html")
+        // document.cookie = `username=${username}`; 
+        // document.cookie = `password=${password}`;
+        // document.cookie = `token=${false}`;
+        const formData= new FormData();
+        formData.append('profilepicture',profilePicture)
+        formData.append('username',username)
+        formData.append('password',password)
+        formData.append('firstname',first_name)
+        formData.append('lastname',last_name)
+        formData.append('email',email)
+        formData.append('role',"admin")
+        formData.append('dob',new Date())
+
+        fetch("http://127.0.0.1:3000/create/user", {
+            method: "POST",
+            body: formData,
+            headers: {}
+            }).then((response)=>{
+                alert("Great Success!");
+            }).catch((error)=>{
+                alert("error")
+            })
+
     }
 
 })  
