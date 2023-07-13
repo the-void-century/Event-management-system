@@ -1,7 +1,7 @@
 class UserController < ApplicationController
     skip_before_action :verify_authenticity_token, only: [:create, :update]
     skip_parameter_encoding :show
-    
+
     def create
         user=Profileuser.new
         user.firstname = params[:firstname]
@@ -41,6 +41,14 @@ class UserController < ApplicationController
         end
         if user.save
             render json: {message: 'User created successfully'}, status: :created
+        else
+            render json: {message: user.errors.full_messages}, status: :unprocessable_entity
+        end
+    end
+    def delete
+        user = User.find(params[:id])
+        if user.destory
+            render json: {message: 'User deleted successfully'}, status: :created
         else
             render json: {message: user.errors.full_messages}, status: :unprocessable_entity
         end
