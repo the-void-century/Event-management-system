@@ -1,7 +1,4 @@
-import sample from "../data/event_data.js"
-let data=sample()
-var main=document.getElementById("events-container")
-console.log(data)
+
 function compare(searchTarget,searchTerm,empty){
     if(empty==true){
         return true
@@ -15,51 +12,28 @@ document.getElementById("SearchForm").addEventListener("submit",(e)=>{
     let sortValue=document.getElementById("sort").value
     let filterValue=document.getElementById("filter").value
     let searchTerm=document.getElementById("Search").value
-    let searchTarget
-    let filterTarget
-    if(filterValue=="Title"){
-        searchTarget="Event Title"
-    }
-    else if(filterValue=="Category"){
-        searchTarget="Event Category"
-    }
-    if(sortValue=="Latest"){
-        data.sort((firstValue,secondValue)=>{
-            return new Date(secondValue["Event Date"])-new Date(firstValue["Event Date"]);
+    let minAmount=document.getElementById("MinAmount").value
+    let maxAmount=document.getElementById("MaxAmount").value
+    let formData=new URLSearchParams;
+    formData.append("sort",sortValue);
+    console.log(sortValue);
+    formData.append("filter",filterValue);
+    formData.append("search",searchTerm);
+    formData.append("minimum",minAmount);
+    formData.append("maximum",maxAmount);
+    formData.append("isSearching",true);
+    
+    fetch(`/?${formData.toString()}`, {
+        method: "GET",
+        headers: {}
+        }).then((response)=>{
+           return response.text()
+        }).then((html)=>{
+            document.getElementById("events-container").innerHTML=html
         })
-    }
-    else if(sortValue=="Oldest"){
-        data.sort((firstValue,secondValue)=>{
-            return new Date(firstValue["Event Date"])-new Date(secondValue["Event Date"]);
+        .catch((error)=>{
+            alert("error")
         })
-    }
-    console.log(filterValue)
-    main.innerHTML=""
-    data.forEach((data)=>{
-        if(data[searchTarget].includes(searchTerm)){
-            main.innerHTML+=`<div class="event">
-            <img src="../assets/conference.jpg" alt="">
-            <div class="event-title">
-                <p>${data["Event Title"]}</p>
-            </div>
-            <div class="event-details">
-                <div class="event-category">
-                    <img src="../assets/category.png" alt="">
-                    <p>${data["Event Category"]}</p>
-                </div>
-                <div class="event-location"><img src="../assets/location.png" alt=""><p>${data["Event Location"]}</p>
-                </div>
-                <div class="event-date">
-                    <img src="../assets/date-time.png" alt=""><p>
-                        ${data["Event Date"]}</p>
-                </div>
-            </div>
-            <div class="buttons">
-                <a href="event_page.html">View Details</a>
-                <a href="#" id="test">Register</a>
-            </div>
-        </div>`
-        }
-    })
+
 })
 
