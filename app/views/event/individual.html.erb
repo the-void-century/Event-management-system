@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag 'nav', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= stylesheet_link_tag 'event_page' %>
+  <%= javascript_include_tag 'side-nav', 'data-turbolinks-track': 'reload', async: true %>
+  <title>Conference</title>
+</head>
+<body>
+<%= render :partial => 'nav_bar', locals: { current: @current, role: @role} %>
+  <div class="event-container">
+  <%= image_tag @event.eventposter, class: "event-image" %>
+    <h1 class="event-title"><%= @event.title %></h1>
+    <p class="event-description"><%= @event.description %> </p>
+    <p class="event-details"><strong>Category:</strong> <%= @event.category %></p>
+    <p class="event-details"><strong>Location:</strong> <%= @event.location %></p>
+    <p class="event-details"><strong>Date:</strong> <%= @event.date %></p>
+    <div class="buttons">
+    <% unless @registered.include?(@event.id) %>
+      <% unless @current.nil? %>      
+        <a href=<%= "/register/"+@event.id.to_s %> class="register-button">Register</a>
+      <% end %>
+      <% if @current.nil? %>
+        <a href=<%= "/login" %> class="register-button">Register</a>
+      <% end %>
+    <% end %>
+    <% if @registered.include?(@event.id) %>
+      <a href=<%= "/unregister/"+@event.id.to_s %> class="register-button" style="background-color:gray">Registered</a>
+    <% end %>
+    <% if @role=="admin" %>
+      <a href=<%= "/event/update/"+@event.id.to_s  %> class="register-button">Edit</a>
+      <a class="register-button" href= <%= (@event.id).to_s+"/participants" %>>View Participants</a>
+      <a class="register-button" href= <%= "delete/"+(@event.id).to_s %> style="background-color:red">Delete</a>
+    <% end %>
+    </div>
+  </div>
+</body>
+</html>

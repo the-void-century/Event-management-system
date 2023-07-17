@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_13_044547) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_17_104345) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -48,6 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_13_044547) do
     t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "seat"
   end
 
   create_table "profileusers", force: :cascade do |t|
@@ -60,6 +61,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_13_044547) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "role"
+    t.string "wallet"
+    t.index ["email"], name: "index_profileusers_on_email", unique: true
+    t.index ["username"], name: "index_profileusers_on_username", unique: true
   end
 
   create_table "registereds", force: :cascade do |t|

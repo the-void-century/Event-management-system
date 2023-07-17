@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Events</title>
+        <%= stylesheet_link_tag 'nav', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= stylesheet_link_tag 'event_list' %>
+        <%= javascript_include_tag 'search', 'data-turbolinks-track': 'reload', async: true %>
+        <%= javascript_include_tag 'side-nav', 'data-turbolinks-track': 'reload', async: true %>
+    </head>
+    <body>
+    <%= render :partial => 'nav_bar', locals: { current: @current, role: @role} %>
+    
+        <div class="search-container">
+            <form id="SearchForm">
+                <input type="text" placeholder="Search.." name="search" id="Search">
+                <button type="submit">Search</button>
+                <label for="sort">Sort By</label>
+                <select name="sort"  id="sort">
+                    <option value="Select">Select</option>
+                    <option value="Latest">Latest</option>
+                    <option value="Oldest">Oldest</option>
+                </select>
+                <label for="filter">Filter by</label>
+                <select name="filter" id="filter">
+                    <option value="Title">Title</option>
+                    <option value="Category">Category</option>
+                </select>
+                <input type="text" placeholder="Minimum Amount" name="search" id="MinAmount">
+                <input type="text" placeholder="Maximum Amount" name="search" id="MaxAmount">
+              </form>
+        </div>
+        
+        <h1>Browse Upcoming Events</h1>
+        <div class="events-container" id="events-container">
+         <%= render partial: 'event_card', collection: @event, as: :event%>
+        </div>
+    </body>   
+</html> 

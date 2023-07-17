@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a new event</title>
+    <%= stylesheet_link_tag 'nav', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'login', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'event-creation-validation', 'data-turbolinks-track': 'reload', async: true %>
+    <%= javascript_include_tag 'side-nav', 'data-turbolinks-track': 'reload', async: true %>
+</head>
+<body>
+<%= render :partial => 'nav_bar', locals: { current: @current, role: @role} %>
+    <div class="main-container">
+        <div class="container">
+            <form class="registration-form" action="./thank_you.html" id="EventCreationForm">
+                <h2>Create a new event</h2>
+                <div class="form-group">
+                    <input type="text" name="EventTitle" id="EventTitle" placeholder="Event title" required>
+                    <p id="TitleError" class="error"></p>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="EventCategory" id="EventCategory" placeholder="Category" required>
+                    <p id="CategoryError" class="error"></p>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="EventLocation" id="EventLocation" placeholder="Location" required>
+                    <p id="LocationError" class="error"></p>
+                </div>
+                <div class="form-group">
+                    <label for="event-image">Event Image:</label>
+                    <input type="file" id="EventImage" name="event-image" placeholder="Enter the URL of the event image">
+                    <p id="ImageError" class="error"></p>
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="EventDescription">Event Description:</label>
+                    <textarea id="EventDescription" name="EventDescription" placeholder="Enter the event description"></textarea>
+                    <p id="DescriptionError" class="error"></p>
+                  </div>
+                  <div class="form-group">
+                  <input type="text" name="EventFees" id="EventFees" placeholder="Fees">
+                  <p id="FeesError" class="error"></p>
+              </div>
+                  <div class="form-group">
+                    <label for="EventDate">Event Date:</label>
+                    <input type="date" id="EventDate" name="EventDate" placeholder="Enter the event date">
+                    <p id="DateError" class="error"></p>
+                  </div>
+                <div class="form-group">
+                    <button type="submit">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

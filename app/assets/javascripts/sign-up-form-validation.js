@@ -28,10 +28,10 @@ document.getElementById("main_form").addEventListener("submit",(e)=>{
         userError.innerHTML+="- The username should not start with a number <br>";
         userError.innerHTML+="- The username should not have spaces or special characters<br>";
         userError.innerHTML+="- The username should be atleast 8 characters long";
-        validForm=false
+        validForm=falseec
         console.log("The function is executing")
     }
-    if(!firstNameMatch){
+    if(!firstNameMatch){ec
         let firstNameError=document.getElementById("FirstNameError");
         firstNameError.innerHTML="";
         firstNameError.innerHTML+="- First Name should not contain special characters or numbers";
@@ -79,18 +79,19 @@ document.getElementById("main_form").addEventListener("submit",(e)=>{
         formData.append('firstname',first_name)
         formData.append('lastname',last_name)
         formData.append('email',email)
-        formData.append('role',"admin")
+        formData.append('role',"user")
         formData.append('dob',new Date())
 
-        fetch("http://127.0.0.1:3000/create/user", {
-            method: "POST",
-            body: formData,
-            headers: {}
-            }).then((response)=>{
-                alert("Great Success!");
-            }).catch((error)=>{
-                alert("error")
-            })
+            fetch("user/create", {
+                method: "POST",
+                body: formData,
+                headers: {}
+                }).then((response)=>{
+                    alert("Great Success!");
+                    window.location.replace("/login");
+                }).catch((error)=>{
+                    alert("error")
+                })
 
     }
 

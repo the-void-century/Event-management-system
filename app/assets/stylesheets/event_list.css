@@ -147,14 +147,17 @@ h1 {
 
 .event-details {
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
+  justify-content: space-around;
   height: -moz-fit-content;
   height: fit-content;
-  margin-left: 5%;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-top: 3%;
+  width: 100%;
+  margin-top: 2%;
+}
+event-details.div{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
 }
 
 .event-title {
@@ -173,7 +176,7 @@ h1 {
 }
 .event-title p {
   font-weight: bold;
-  z-index: 2;
+  z-index: 1;
 }
 
 .details {

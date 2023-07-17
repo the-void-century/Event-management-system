@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+        <%= stylesheet_link_tag 'nav', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= stylesheet_link_tag 'homepage' %>
+        <%= javascript_include_tag 'side-nav', 'data-turbolinks-track': 'reload', async: true %>
+    </head>
+    <body>
+    <%= render :partial => 'nav_bar', locals: { current: @current, role: @role} %>
+        <div class="main-container">
+        <%= image_tag url_for(@user.profilepicture) %>
+            <div class="details-container">
+                <table>
+                    <tr>
+                        <td>First Name:</td>
+                        <td><%= @user.firstname %></td>
+                    </tr>
+                    <tr>
+                        <td>Last Name:</td>
+                        <td><%= @user.lastname %></td>
+                    </tr>
+                    <tr>
+                        <td>Username:</td>
+                        <td><%= @user.username %></td>
+                    </tr>
+                    <tr>
+                        <td>Date of Birth:</td>
+                        <td><%= @user.dob %></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td><%= @user.email %></td>
+                    </tr>
+                </table>
+                <a href="edit_profile.html">Edit Profile</a>
+            </div>
+        </div>
+    </body>
+</html>

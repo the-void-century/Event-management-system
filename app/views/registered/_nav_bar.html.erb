@@ -1,0 +1,67 @@
+<div id="myNav" class="overlay">
+    <div class="nav-head">
+        <img src="../assets/event.png" alt="">
+        <a href="javascript:void(0)" class="closebtn" id="closeNav">&times;</a>
+    </div>
+    <div class="overlay-content">
+        <% if current.nil? %>
+        <div class="overlay-link" id="login-overlay">
+            <a href="/login"></a>
+            <p>Login</p><p>></p>
+        </div>
+        <% end %>
+        <% if current.nil? %>
+        <div class="overlay-link" id="signup-overlay">
+            <a href="/signup" ></a>
+            <p>Sign Up</p><p>></p>
+        </div>
+        <% end %>
+        <% if role=="admin" %>
+        <div class="overlay-link" id="create-overlay">
+            <a href="/event/create" ></a>
+            <p>Create</p><p>></p>
+        </div>
+        <% end %>
+        <% unless current.nil? %>
+        <div class="overlay-link" id="logout-overlay" >
+          <a href="/logout" class="logout"></a>
+          <p>Logout</p><p>></p>
+        </div>
+        <% end %>
+        <% unless current.nil? %>
+        <div class="overlay-link">
+            <a href="/current"></a>
+            <p>Your Events</p><p>></p>
+        </div>
+        <% end %>
+        <div class="overlay-link">
+            <a href="/"></a>
+            <p>Event List</p><p>></p>
+        </div>
+    </div>
+</div>
+<nav>
+    <img src="../assets/event.png" alt="">
+    
+    <div class="links">
+        <img src="../assets/hamburger-ico.png" href="#" id="openNav">
+    </div>
+    <div class="desktop-links">
+        <% if current.nil? %>
+        <a href="/login" id="login">Login</a>
+        <% end %>
+        <% if current.nil? %>
+        <a href="/signup" id="signup">Sign-up</a>
+        <% end %>
+        <% if role=="admin" %>
+        <a href="/event/create" id="create">Create</a>
+        <% end %>
+        <% unless current.nil? %>
+        <a href="/current" id="logout" class="logout">Your Events</a>
+        <% end %>
+        <% unless current.nil? %>
+        <a href="/logout" id="logout" class="logout">Logout</a>
+        <% end %>
+        <a href="/">Event List</a>
+    </div>
+</nav>

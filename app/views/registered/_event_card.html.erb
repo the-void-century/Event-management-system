@@ -1,0 +1,44 @@
+<div class="event">
+    <%= image_tag url_for(event.eventposter) %>
+    <div class="event-title">
+        <p><%= event.title %></p>
+    </div>
+    <div class="event-details">
+        <div>
+            <div class="event-category">
+                <img src="../assets/category.png" alt="">
+                <p><%= event.category %></p>
+            </div>
+            <div class="event-location"><img src="../assets/location.png" alt=""><p><%= event.location %></p>
+            </div>
+            <div class="event-date">
+                <img src="../assets/date-time.png" alt=""><p>
+                <%= event.date %></p>
+            </div>
+            <div class="event-date">
+                <img src="../assets/money.png" alt=""><p>
+                <%= event.fees %></p>
+            </div>
+        </div>
+        <div>
+            <div class="event-date">
+                <p>Seats:</p>
+                <p><%= event.seat %></p>
+            </div>
+        </div>    
+    </div>
+    <div class="buttons">
+        <a href=<%= "/event/"+(event.id.to_s) %>>View Details</a>
+        <% if @registered.include?(event.id) %>
+        <a href=<%= "/unregister/"+(event.id.to_s) %> id="test" style="background-color:gray;">Registered</a>
+        <% end %>
+        <% unless @registered.include?(event.id) %>
+        <% if @current.nil? %>
+        <a href="/login" id="test" >Register</a>            
+        <% end %>
+        <% unless @current.nil? %>
+        <a href=<%= "/register/"+(event.id.to_s) %> id="test" >Register</a>
+        <% end %>
+        <% end %>
+    </div>
+</div>

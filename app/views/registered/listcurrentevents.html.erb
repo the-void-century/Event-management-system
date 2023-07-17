@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Events</title>
+        <%= stylesheet_link_tag 'nav', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= stylesheet_link_tag 'event_list' %>
+        <%= javascript_include_tag 'search', 'data-turbolinks-track': 'reload', async: true %>
+        <%= javascript_include_tag 'side-nav', 'data-turbolinks-track': 'reload', async: true %>
+    </head>
+    <body>
+    <%= render :partial => 'nav_bar', locals: { current: @current, role: @role} %>
+        <h1>Events you registered for</h1>
+        <div class="events-container" id="events-container">
+         <%= render partial: 'event_card', collection: @event, as: :event%>
+        </div>
+    </body>
+</html>
