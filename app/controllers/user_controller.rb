@@ -1,6 +1,9 @@
-class UserController < ApplicationController
+class UserController < MainController
+    protect_from_forgery prepend: true
     skip_before_action :verify_authenticity_token, only: [:create, :update]
     skip_parameter_encoding :show
+    before_action :is_logged_in, only: [:create]
+    before_action :authenticate, only: [:update, :delete]
 
     def create
         user=Profileuser.new
@@ -46,8 +49,8 @@ class UserController < ApplicationController
         end
     end
     def delete
-        user = User.find(params[:id])
-        if user.destory
+        user=Profileuser.find_by(id:params[:id])
+        if user.destroy
             render json: {message: 'User deleted successfully'}, status: :created
         else
             render json: {message: user.errors.full_messages}, status: :unprocessable_entity
@@ -55,5 +58,11 @@ class UserController < ApplicationController
     end
     def post_params
         params.require(:profileusers).permit(:username,:firstname,:lastname,:email,:password,:role,:dob)
+    end
+    def user_page
+        @current= session[:userid]
+        @role = session[:role]
+        @user = Profileuser.find_by(id:session[:userid])
+        puts @user
     end
 end
