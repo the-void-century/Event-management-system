@@ -1,10 +1,11 @@
 class UserController < MainController
+    before_action :set_cache_headers
     protect_from_forgery prepend: true
-    skip_before_action :verify_authenticity_token, only: [:create, :update]
+    #skip_before_action :verify_authenticity_token, only: [:create, :update]
     skip_parameter_encoding :show
     before_action :is_logged_in, only: [:create]
-    before_action :authenticate, only: [:update, :delete]
-
+    before_action :authenticate, only: [:update, :delete ,:user_list,:update_role]
+    before_action :authorize, only: [:delete ,:user_list,:update_role]
     def create
         user=Profileuser.new
         user.firstname = params[:firstname]
@@ -23,7 +24,7 @@ class UserController < MainController
         end        
     end
     def update
-        user=Profileuser.find_by(id:params[:id])
+        user=Profileuser.find_by(id:session[:userid])
         if params.has_key?(:username)
             user.username=params[:username]
         end
@@ -64,5 +65,26 @@ class UserController < MainController
         @role = session[:role]
         @user = Profileuser.find_by(id:session[:userid])
         puts @user
+    end
+    def user_edit
+        @form_token = form_authenticity_token
+        @current= session[:userid]
+        @role = session[:role]
+        @user= Profileuser.find_by(id:session[:userid])
+    end
+    def user_list        
+        @current= session[:userid]
+        @role = session[:role]
+        @user= Profileuser.all
+    end
+    def update_role
+        puts params        
+        user=Profileuser.find_by(id:params[:userid])
+        user.role=params[:role]        
+        if user.save
+            return render json: {message: 'role updated'}, status: :created
+        else
+            return render json: {message: 'error'}, status: :unprocessable_entity
+        end
     end
 end

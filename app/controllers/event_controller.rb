@@ -1,10 +1,13 @@
 class EventController < MainController
+    before_action :set_cache_headers
     protect_from_forgery prepend: true
-    skip_before_action :verify_authenticity_token, only: [:create, :update]
+    #skip_before_action :verify_authenticity_token, only: [:create, :update]
     skip_parameter_encoding :show
     before_action :authenticate, only: [:create, :update, :eventcreate, :delete]
-    before_action :authorize, only: [:create, :update, :eventcreate, :delete]
+    before_action :authorize, only: [:create, :eventcreate, :delete]
+    before_action :authorize_editor, only: [:update, :event_update]
     def eventcreate
+        @form_token = form_authenticity_token
         @current=session[:userid]
         @role=session[:role]
     end
@@ -31,8 +34,11 @@ class EventController < MainController
         else
             @registered=[-1]
         end
-        @event=@event.where("title LIKE ?",@event.sanitize_sql_like(params[:search]) + "%") if params[:filter]=="Title"
-        @event=@event.where("category LIKE ?",@event.sanitize_sql_like(params[:search]) + "%") if params[:filter]=="Category"
+        if params[:reset].present?
+            render partial: 'event_card', collection: @event, as: :event
+        end
+        @event=@event.where("title LIKE ?","%" + @event.sanitize_sql_like(params[:search]) + "%") if params[:filter]=="Title"
+        @event=@event.where("category LIKE ?","%" + @event.sanitize_sql_like(params[:search]) + "%") if params[:filter]=="Category"
         @event=@event.where("fees > ?" ,params[:minimum]) if params[:minimum].present?
         @event=@event.where("fees < ?", params[:maximum]) if params[:maximum].present?
         @event= @event.order(:date) if params[:sort]=="Latest"
@@ -133,5 +139,6 @@ class EventController < MainController
     end
     def event_update
         @event = Event.find_by(id:params[:id])
+        @form_token = form_authenticity_token
     end
 end

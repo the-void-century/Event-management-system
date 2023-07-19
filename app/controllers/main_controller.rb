@@ -1,12 +1,14 @@
 class MainController<ApplicationController
+    before_action :set_cache_headers
     protect_from_forgery prepend: true
-    skip_before_action :verify_authenticity_token
+    #skip_before_action :verify_authenticity_token
     before_action :is_logged_in, only: [:login, :signup]
     # def index
     # end
     def login
         @current=session[:userid]
         @role=session[:role]
+        @form_token=form_authenticity_token
         puts "HI I AM UTSAV" 
         if request.post?
             puts params
@@ -46,6 +48,15 @@ class MainController<ApplicationController
             end
         end
     end
+    def authorize_editor
+        if session[:role].nil?
+            redirect_to :root
+        else
+            if session[:role]!= "Editor" || session[:role]!="admin"
+                redirect_to :root
+            end
+        end
+    end
     def logout
         puts "ITS GIVING"
         session.delete(:userid)
@@ -53,6 +64,7 @@ class MainController<ApplicationController
         redirect_to :login
     end
     def signup
+        
         @current=session[:userid]
         @role=session[:role]
     end
@@ -63,5 +75,11 @@ class MainController<ApplicationController
         if session[:userid].present?
             redirect_to :root
         end
+    end
+    def set_cache_headers
+        puts "Cache headers are being sent"
+        response.headers["Cache-Control"] = "no-cache, no-store"
+        response.headers["Pragma"] = "no-cache"
+        response.headers["Expires"] = "Mon, 01 Jan 1990 00:00:00 GMT"
     end
 end
