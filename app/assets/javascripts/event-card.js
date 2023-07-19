@@ -1,30 +1,36 @@
-document.addEventListener('DOMContentLoaded', function() {
-    var registerButton = document.getElementById('registerButton');
-    
-    registerButton.addEventListener('click', function(event) {
-      event.preventDefault();
-      fetch("/")
-      
-      var eventId = registerButton.getAttribute('data-event-id');
-      var url = '/register'
-      
-      fetch(url, {
-        method: 'POST',
-        headers: {},
-        body: 'eventId=' + encodeURIComponent(eventId)
-      })
-      .then(function(response) {
-        if (response.ok) {
-          return response.text();
+// document.addEventListener("DOMContentLoaded", ()=>{
+    document.getElementById("events-container").addEventListener("click", (e)=>{
+        console.log("registering")
+        if (e.target && e.target.matches("a.classA")) {
+            console.log("Anchor element clicked!");
+            }
+        if(e.target && e.target.tagName=="A"){
+            let url = e.target.id+"/"+e.target.getAttribute("event")
+            let flag=false
+            if(e.target.id=="register"){
+                e.target.style="background-color: gray";
+                e.target.id="unregister"
+                e.target.innerHTML="Registered"
+                flag=true
+            }
+            else if(e.target.id=="unregister"){
+                e.target.style="background-color:#743dee";
+                e.target.id="register"
+                e.target.innerHTML="Register"
+                flag=true
+            }
+            console.log(url)
+            if(flag){
+                fetch(url, {
+                    method: "GET",
+                    headers: {}
+                    }).then((response)=>{
+                        console.log(response);
+                    }).catch((error)=>{
+                        alert("error")
+                    })
+            }
+            
         }
-        throw new Error('Request failed!')
-      })
-      .then(function(data) {
-        console.log(data)
-      })
-      .catch(function(error) {
-        console.log(error)
-      });
-    });
-  });
-  
+    })
+// })
