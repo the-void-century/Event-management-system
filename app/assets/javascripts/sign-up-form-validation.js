@@ -72,6 +72,7 @@ document.getElementById("main_form").addEventListener("submit",(e)=>{
         // document.cookie = `username=${username}`; 
         // document.cookie = `password=${password}`;
         // document.cookie = `token=${false}`;
+        const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
         const formData= new FormData();
         formData.append('profilepicture',profilePicture)
         formData.append('username',username)
@@ -79,15 +80,20 @@ document.getElementById("main_form").addEventListener("submit",(e)=>{
         formData.append('firstname',first_name)
         formData.append('lastname',last_name)
         formData.append('email',email)
-        formData.append('role',"user")
+        formData.append('role',"User")
         formData.append('dob',new Date())
-
+        formData.append("authenticity_token",csrfToken)
             fetch("user/create", {
                 method: "POST",
                 body: formData,
                 headers: {}
                 }).then((response)=>{
-                    alert("Great Success!");
+                    if(response.status==201){
+                        console.log("reponse")
+                        let snack=document.getElementById("snackbar")
+                        snack.classList.add("show")
+                        setTimeout(()=>{snack.classList.remove("show")},2000)
+                    }
                     window.location.replace("/login");
                 }).catch((error)=>{
                     alert("error")
