@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="<%= @form_token %>">
     <title>Add a new event</title>
     <%= stylesheet_link_tag 'nav', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'login', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -14,6 +15,7 @@
     <div class="main-container">
         <div class="container">
             <form class="registration-form" action="./thank_you.html" id="EventCreationForm">
+            <%= hidden_field_tag :authenticity_token, @form_token %>
                 <h2>Create a new event</h2>
                 <div class="form-group">
                     <input type="text" name="EventTitle" id="EventTitle" placeholder="Event title" required>
@@ -41,17 +43,23 @@
                   <div class="form-group">
                   <input type="text" name="EventFees" id="EventFees" placeholder="Fees">
                   <p id="FeesError" class="error"></p>
+                  </div>
+                  <div class="form-group">
+                  <input type="text" name="EventSeats" id="EventSeats" placeholder="Seats">
+                  <p id="SeatError" class="error"></p>
               </div>
                   <div class="form-group">
                     <label for="EventDate">Event Date:</label>
                     <input type="date" id="EventDate" name="EventDate" placeholder="Enter the event date">
                     <p id="DateError" class="error"></p>
-                  </div>
+                    </div>
+                    
                 <div class="form-group">
                     <button type="submit">Create</button>
                 </div>
             </form>
         </div>
     </div>
+    <div id="snackbar">Event Created</div>
 </body>
 </html>

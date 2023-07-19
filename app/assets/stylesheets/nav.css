@@ -65,6 +65,12 @@ nav .desktop-links {
 nav .desktop-links a {
   text-decoration: none;
   color: #000;
+  transition: all .2s ease-in-out;
+}
+
+nav .desktop-links a:hover {
+  transform: scale(1.1); 
+  color:#7438f7;
 }
 
 .overlay {
@@ -132,4 +138,36 @@ nav .desktop-links a {
   font-size: 12px;
   color: red;
   font-family: Arial, Helvetica, sans-serif;
-}/*# sourceMappingURL=nav.css.map */
+}
+
+#snackbar {
+  visibility: hidden;
+  min-width: 250px; 
+  margin-left: -125px; 
+  background-color: #333;
+  color: #fff; 
+  text-align: center; 
+  border-radius: 2px; 
+  padding: 16px; 
+  position: fixed; 
+  z-index: 1;
+  left: 50%; 
+  bottom: 30px; 
+}
+
+#snackbar.show {
+  visibility: visible;
+  animation: fadein 0.5s 1s, fadeout 0.5s 1s;
+}
+
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 0.7;}
+}
+
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 0.7;}
+  to {bottom: 0; opacity: 0;}
+}

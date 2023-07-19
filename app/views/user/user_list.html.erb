@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>User Management</title>
+  <%= stylesheet_link_tag 'role_change' %>
+  <%= stylesheet_link_tag 'nav', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'update_role', 'data-turbolinks-track': 'reload', async: true %>
+</head>
+<body>
+    <%= render :partial => 'nav_bar', locals: { current: @current, role: @role} %>
+    <h3>Modify User roles.....</h3>
+    <div class="main-container" id="container">
+    <%= render partial: 'user_card', collection: @user, as: :user%>
+    </div>
+    <div id="snackbar">Changed Applied Successfully</div>
+</body>
+</html>

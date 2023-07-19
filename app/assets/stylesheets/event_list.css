@@ -15,7 +15,7 @@
 }
 
 body {
-  background-color: #42557b;
+  background-color: #f3f2ef;
   background-size: cover;
   background-repeat: no-repeat;
   width: 100vw;
@@ -23,10 +23,11 @@ body {
 }
 
 h1 {
-  color: white;
+  color: black;
   font-size: 1.5rem;
   margin: 3%;
   animation: mymove 1.5s;
+  border-bottom: 1px solid black;
 }
 
 .search-container {
@@ -35,31 +36,64 @@ h1 {
   justify-content: center;
   margin-top: 4%;
 }
+
 .search-container form {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 755px) {
   .search-container form {
-    width: 40%;
+    width:94%;
+    
     flex-direction: row;
     justify-content: space-around;
+    height:50px;
+  }
+  .search-container form button{
+    width:7%;
+    height: 50px;
+  }
+  .search-container form input[type=text]{
+    width:20%;
+    height: 50px;
+  }
+  .search-container form select {
+    height: 50px;
   }
 }
 .search-container form button {
   margin-right: 10px;
+  background-color: #743dee;
+  color:white;
+  border:none;
+  border-radius: 4px;
+  height: 30px;
 }
 .search-container form input[type=text] {
   border-radius: 4px;
   margin-right: 10px;
+  border:1px solid #cccccc;
+  height: 30px;
+  
+}
+.search-container form input[type="text"]:focus {
+	outline-style: solid;
+	border-color: #743dee;
 }
 .search-container form label {
-  color: white;
+  color:black;
   margin-right: 10px;
+  margin-top:10px
 }
 .search-container form select {
-  margin-right: 10px;
+	margin-right: 10px;
+	background-color: #743dee;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	min-width: 100px;
+  height: 30px;
 }
 
 .events-container {
@@ -81,6 +115,7 @@ h1 {
   width: 100%;
   display: flex;
   justify-content: space-around;
+  border-top: 1px solid black;
 }
 
 .event {
@@ -88,38 +123,42 @@ h1 {
   width: 90%;
   margin: 3%;
   transition: 0.25s linear;
-  background-color: white;
-  border-radius: 1.5rem;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: white;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   animation: mymove 1s;
+  overflow: hidden;
 }
 .event img {
-  border-top-right-radius: 1.5rem;
-  border-top-left-radius: 1.5rem;
   width: 100%;
   height: 50%;
   -o-object-fit: cover;
      object-fit: cover;
+
 }
 .event a {
   text-decoration: none;
   width: 6.5rem;
   height: 2.5rem;
   color: white;
-  background-color: #4681f4;
-  border-radius: 1.5rem;
+  background-color: #743dee;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 1rem;
+  transition-delay: 0.3s;
+  transition: 0.3s;
+}
+.event a:hover {
+  background-color: #8555ee;
 }
 @media screen and (min-width: 600px) {
   .event {
@@ -153,18 +192,17 @@ h1 {
   height: fit-content;
   width: 100%;
   margin-top: 2%;
+  padding: 2%;
+  width: 85%;
+  gap: 10px;
 }
-event-details.div{
-  display: flex;
-  flex-direction: column;
-  width: 50%;
+.event-details div{
+  width: 100%;
 }
 
 .event-title {
-  width: 40%;
+  width: fit-content;
   height: 8%;
-  margin-top: 10px;
-  left: 30%;
   background-color: white;
   display: flex;
   justify-content: center;
@@ -173,6 +211,8 @@ event-details.div{
   border-radius: 4px;
   position: absolute;
   padding: 1%;
+  top: 30%;
+
 }
 .event-title p {
   font-weight: bold;
@@ -188,6 +228,7 @@ event-details.div{
   align-items: center;
   justify-content: space-between;
   width: 35%;
+  margin-top: 11px;
 }
 .event-date img {
   width: 25px;
@@ -216,8 +257,7 @@ event-details.div{
   width: 50%;
 }
 .event-category img {
-  width: -moz-fit-content;
-  width: fit-content;
+  width: 34px;
   height: 30px;
   margin-right: 10%;
 }/*# sourceMappingURL=event_list.css.map */

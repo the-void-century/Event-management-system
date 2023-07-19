@@ -21,6 +21,10 @@
             <a href="/event/create" ></a>
             <p>Create</p><p>></p>
         </div>
+        <div class="overlay-link" id="create-overlay">
+            <a href="/roles" ></a>
+            <p>Assign Roles</p><p>></p>
+        </div>
         <% end %>
         <% unless current.nil? %>
         <div class="overlay-link" id="logout-overlay" >
@@ -59,6 +63,7 @@
         <% end %>
         <% if role=="admin" %>
         <a href="/event/create" id="create">Create</a>
+        <a href="/roles" id="create">Assign Roles</a>
         <% end %>
         <% unless current.nil? %>
         <a href="/current" id="logout" class="logout">Your Events</a>

@@ -1,0 +1,10 @@
+<div class="profile-container">
+        <div class="profile-picture"><%= image_tag url_for(user.profilepicture) %></div>
+        <div class="profile-name"> <strong>Name:</strong><p><%= user.firstname.to_s+" "+user.lastname.to_s %></p> </div>
+        <form id="RoleChange">
+            <label><input type="radio" name="Role" class="currentName" value="Editor" x=<%= user.id.to_s %>><p>Editor</p></label>
+            <label><input type="radio" name="Role" class="currentName" value="User" x=<%= user.id.to_s %>><p>User</p></label>
+            <button type="submit" class="currentName">Apply Changes</button>
+            <p id=<%= user.id.to_s %> style="color:green;"></p>
+        </form>
+    </div>

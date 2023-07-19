@@ -28,6 +28,9 @@
     <% if @registered.include?(@event.id) %>
       <a href=<%= "/unregister/"+@event.id.to_s %> class="register-button" style="background-color:gray">Registered</a>
     <% end %>
+    <% if @role=="Editor" %>
+    <a href=<%= "/event/update/"+@event.id.to_s  %> class="register-button">Edit</a>
+    <% end %>
     <% if @role=="admin" %>
       <a href=<%= "/event/update/"+@event.id.to_s  %> class="register-button">Edit</a>
       <a class="register-button" href= <%= (@event.id).to_s+"/participants" %>>View Participants</a>

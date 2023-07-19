@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="csrf-token" content="<%= @form_token %>">
 <%= stylesheet_link_tag 'nav', media: 'all', 'data-turbolinks-track': 'reload' %>
 <%= stylesheet_link_tag 'login', media: 'all', 'data-turbolinks-track': 'reload' %>
+
 <%= javascript_include_tag 'login.js', 'data-turbolinks-track': 'reload', async: true %>
 <%= javascript_include_tag 'side-nav', 'data-turbolinks-track': 'reload', async: true %>
   <title>Login</title>
@@ -61,6 +63,7 @@
     <div class="main-container">
   <div class="container">
     <form class="registration-form" id="form">
+    <%= hidden_field_tag :authenticity_token, @form_token %>
       <h2>Log-in</h2>
       <p id="LoginError" class="error"></p>
       <div class="form-group">

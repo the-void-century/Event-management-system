@@ -4,8 +4,7 @@
 
 body {
   font-family: "Helvetica", "Arial", sans-serif;
-  background-color: #f3f3f3;
-  background-image: url("../assets/party.jpg");
+  background-color: #f3f2ef;
   background-size: cover;
 }
 
@@ -47,7 +46,7 @@ body {
 }
 .container h2 {
   margin-top: 10%;
-  color: #4681f4;
+  color: #743dee;
 }
 
 .registration-form {
@@ -106,7 +105,8 @@ input[type=password] {
 input[type=text]:focus,
 input[type=email]:focus,
 input[type=password]:focus {
-  border-color: #5cb85c;
+  border-color: #743dee;
+  outline: none;
 }
 
 button[type=submit] {
@@ -114,11 +114,10 @@ button[type=submit] {
   padding: 10px;
   font-size: 16px;
   color: #ffffff;
-  background-color: #4681f4;
+  background-color: #743dee;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
-  border-radius: 25px;
+  border-radius: 6px;
 }
 button[type=submit]:hover {
   transition: 1s;

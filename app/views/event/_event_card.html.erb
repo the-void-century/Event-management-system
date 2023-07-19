@@ -21,23 +21,29 @@
             </div>
         </div>
         <div>
+        
             <div class="event-date">
                 <p>Seats:</p>
                 <p><%= event.seat %></p>
             </div>
         </div>    
     </div>
-    <div class="buttons">
+    <div class="buttons" id="buttons">
         <a href=<%= "/event/"+(event.id.to_s) %>>View Details</a>
         <% if @registered.include?(event.id) %>
-        <a href=<%= "/unregister/"+(event.id.to_s) %> id="test" style="background-color:gray;">Registered</a>
+        <a href="#0" class="test" event=<%= event.id.to_s %> id="unregister" style="background-color:gray;">Registered</a>
         <% end %>
         <% unless @registered.include?(event.id) %>
         <% if @current.nil? %>
         <a href="/login" id="test" >Register</a>            
         <% end %>
         <% unless @current.nil? %>
-        <a href=<%= "/register/"+(event.id.to_s) %> id="test" >Register</a>
+        <% if event.seat=="0" || event.seat=="Sold Out" %>
+        <a href="#0" style="background-color:red;pointer-events: none;" disabled>Sold Out</a>
+        <% end %>
+        <% unless event.seat=="0" || event.seat=="Sold Out" %>
+        <a href="#0" class="test" event=<%= event.id.to_s %> id="register" >Register</a>
+        <% end %>
         <% end %>
         <% end %>
     </div>

@@ -14,7 +14,7 @@
 }
 
 body {
-  background-color: #354463;
+  background-color: #f3f2ef;
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
@@ -63,12 +63,16 @@ td:nth-child(odd) {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: #743dee;
   padding: 3%;
-  border-radius: 25px;
+  border-radius: 6px;
   text-decoration: none;
-  color: black;
+  color: white;
   height: 5%;
+  transition: 0.3s;
+}
+.details-container a:hover{
+  background-color:#8555ee ;
 }
 @media screen and (min-width: 768px) {
   .details-container a {
@@ -78,13 +82,13 @@ td:nth-child(odd) {
 }
 @media screen and (min-width: 768px) {
   .details-container {
-    border-left: 1px solid gray;
+    border-left: 1px solid black;
     width: 40%;
   }
 }
 
 table {
-  color: white;
+  color: black;
   font: Helvetica, sans-serif;
 }
 @media screen and (min-width: 768px) {

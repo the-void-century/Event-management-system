@@ -4,62 +4,30 @@
     <meta name="csrf-token" content="<%= @form_token %>">
     <%= stylesheet_link_tag 'nav', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'login' %>
-    <%= javascript_include_tag 'sign-up-form-validation.js', 'data-turbolinks-track': 'reload', async: true %>
+    <%= javascript_include_tag 'user_edit', 'data-turbolinks-track': 'reload', async: true %>
     <%= javascript_include_tag 'side-nav', 'data-turbolinks-track': 'reload', async: true %>
     </head>
     <body>
-        <div id="myNav" class="overlay">
-            <div class="nav-head">
-                <img src="../assets/event.png" alt="">
-                <a href="javascript:void(0)" class="closebtn" id="closeNav">&times;</a>
-            </div>
-            <div class="overlay-content">
-                <div class="overlay-link">
-                    <a href="login.html"></a>
-                    <p>Login</p><p>></p>
-                </div>
-                <div class="overlay-link">
-                    <a href="signup.html"></a>
-                    <p>Register</p><p>></p>
-                </div>
-                <div class="overlay-link">
-                    <a href="event_list.html"></a>
-                    <p>Event List</p><p>></p>
-                </div>
-            </div>
-        </div>
-        <nav>
-            <img src="../assets/event.png" alt="">
-            
-            <div class="links">
-                <img src="../assets/hamburger-ico.png" href="#" id="openNav">
-            </div>
-            <div class="desktop-links">
-                <a href="login.html">Login</a>
-                <a href="signup.html">Sign-up</a>
-                <a href="event_list.html">Event List</a>
-            </div>
-        </nav>
+    <%= render :partial => 'nav_bar', locals: { current: @current, role: @role} %>
         <div class="main-container">
             <div class="container">
                 <form name="signup" id="main_form" class="registration-form" action="a.html" enctype="multipart/form-data">
-                
                 <%= hidden_field_tag :authenticity_token, @form_token %>
-                    <h2>Sign-Up</h2>
+                    <h2>Edit your details</h2>    
                     <div class="form-group">
-                        <input type="text" name="username" placeholder="Username" id="user">
-                        <p id="UserError" class="error"></p>
+                        <input type="text" name="username" placeholder="Username" id="user" value=<%= @user.username %>>
+                        <p id="UserError" class="error"></p> 
                     </div>
                     <div class="form-group">
-                        <input type="text" name="first_name" placeholder="First Name" id="first-name" >
+                        <input type="text" name="first_name" placeholder="First Name" id="first-name" value=<%= @user.firstname %> >
                         <p id="FirstNameError" class="error"></p>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="last_name" placeholder="Last Name" id="last-name" >
+                        <input type="text" name="last_name" placeholder="Last Name" id="last-name" value=<%= @user.lastname %>>
                         <p id="LastNameError" class="error"></p>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="email" placeholder="Email" id="email" >
+                        <input type="text" name="email" placeholder="Email" id="email" value=<%= @user.email %>>
                         <p id="EmailError" class="error"></p>
                     </div>
                     <div class="form-group">
@@ -80,6 +48,5 @@
                 </form>
             </div>
         </div>
-        <div id="snackbar">Success!</div>
     </body>
 </html>
