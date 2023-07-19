@@ -37,3 +37,54 @@ document.getElementById("SearchForm").addEventListener("submit",(e)=>{
 
 })
 
+document.getElementById("SearchForm").addEventListener("reset",(e)=>{
+    let formData=new URLSearchParams;
+    formData.append("reset",true);
+    fetch(`/?${formData.toString()}`, {
+        method: "GET",
+        headers: {}
+        }).then((response)=>{
+           return response.text()
+        }).then((html)=>{
+            document.getElementById("events-container").innerHTML=html
+        })
+        .catch((error)=>{
+            alert("error")
+        })
+})
+
+function deBounce(search,delay){
+    let debounceTimer;
+    return function(){
+        if(debounceTimer){
+            clearTimeout(debounceTimer);
+        }
+        debounceTimer= setTimeout(()=>{search();},delay);
+    }
+}
+
+function search(){
+    let text=document.getElementById("Search").value;
+    let filterValue=document.getElementById("filter").value
+    if(text.length>=3){
+        console.log(text)
+        let formData= new URLSearchParams();
+        formData.append("search", text);
+        formData.append("isSearching",true);
+        formData.append("filter", filterValue);
+        fetch(`/?${formData.toString()}`, {
+            method: "GET",
+            headers: {}
+            }).then((response)=>{
+               return response.text()
+            }).then((html)=>{
+                document.getElementById("events-container").innerHTML=html
+            })
+            .catch((error)=>{
+                alert("error")
+            })
+    }
+
+}
+
+document.getElementById("Search").addEventListener("input",deBounce(search,500));
